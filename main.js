@@ -32,7 +32,7 @@ app.disable('x-powered-by');
 
 app.set('port', port);
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`spy agency app listening on port ${port}!`));
 
 app.use(express.static('public'));
 
@@ -42,8 +42,7 @@ app.set('views', __dirname + '/views');
 routes(app);
 
 app.use((err, res, next) => {
-    console.error(err.stack);
-    res.status(err.status || 500).send(err.stack); 
+    res.send('error: route not found');
 });
 
 module.exports = {

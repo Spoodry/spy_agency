@@ -5,8 +5,9 @@ module.exports = (app) => {
     app.get('/', (req, res) => {
         try {
             jwt.verify(req.cookies.jwt_sa, process.env.SECRETORKEY, async (err, decode) => {
+                console.log('decode: ' + decode);
                 if(err) {
-                    res.render('login', { success: true });
+                    res.render('login', { success: true, message: '' });
                 } else {
                     res.redirect('/hits');
                 }
@@ -24,6 +25,8 @@ module.exports = (app) => {
         res.redirect('/');
     });
 
-    app.use('/users', require('./users_routes'));
+    app.use('/register', require('./register_routes'));
+
     app.use('/hits', require('./hits_routes'));
+    app.use('/hitmen', require('./hitmen_routes'));
 };

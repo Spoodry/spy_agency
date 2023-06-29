@@ -1,19 +1,12 @@
 const router = require('express').Router();
-const jwt = require('jsonwebtoken');
+const hits_controller = require('../controllers/hits_controller');
+const passport = require('passport');
 
-router.get('/', (req, res) => {
-    try {
-        jwt.verify(req.cookies.jwt_sa, process.env.SECRETORKEY, async (err, decode) => {
-            if(err) {
-                res.redirect('/');
-            } else {
-                res.render('hits', { success: true });
-            }
-        });
-    } catch (e) {
-        console.log("[ERROR]: " + e);
-        return res.status(403).send({ error: 'Se ha encontrado un error.' });
-    }
-});
+router.get('/', hits_controller.index);
+router.get('/:id(\\d+)', hits_controller.show);
+router.post('/:id(\\d+)/status', passport.authenticate('cookie', { session : false }), hits_controller.status_update);
+router.post('/:id(\\d+)/assignee', passport.authenticate('cookie', { session : false }), hits_controller.assignee_update);
+router.get('/create', hits_controller.create);
+router.post('/create', passport.authenticate('cookie', { session : false }), hits_controller.new);
 
 module.exports = router;

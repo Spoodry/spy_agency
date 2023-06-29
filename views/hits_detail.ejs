@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hit Detail | Spy Agency</title>
+    <link href="/assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+    <%- include('./layout/topbar') -%>
+
+    <div class="container mt-10 mx-auto px-10">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold mb-10">Hit Detail</h1>
+        </div>
+        <div>
+            <label class="text-2xl font-bold">Assignee:&nbsp;
+            <% if(((user.id_type == 1 && user.id == 1) || user.id_type == 2) && hit.id_status == 1 ) { %>
+                <select id="sl-id-assignee" class="select select-bordered w-full max-w-xs">
+                    <% for(let i = 0; i < assignees.length; i++) { %>
+                        <option value="<%= assignees[i].id %>" <%= (assignees[i].id == hit.id_assignee) ? 'selected' : '' %>><%= assignees[i].name %></option>
+                    <% } %>
+                </select>
+            <% } else { %>
+                </label><span class="text-2xl font-extralight"><%= hit.assignee %></span>
+            <% } %>
+        </div>
+        <div>
+            <label class="text-2xl font-bold">Description:&nbsp;</label><span class="text-2xl font-extralight"><%= hit.description %></span>
+        </div>
+        <div>
+            <label class="text-2xl font-bold">Target:&nbsp;</label><span class="text-2xl font-extralight"><%= hit.target_name %></span>
+        </div>
+        <div>
+            <label class="text-2xl font-bold">Status:&nbsp;</label>
+            <div class="badge <%= (hit.id_status == 1 ? 'badge-info' : (hit.id_status == 2 ? 'badge-error' : 'badge-success')) %> gap-2">
+                <span class="text-2xl"><%= hit.status %></span>
+            </div>
+        </div>
+        <div>
+            <label class="text-2xl font-bold">Created by:&nbsp;</label><span class="text-2xl font-extralight"><%= hit.creator %></span>
+        </div>
+        <div>
+            <label class="text-2xl font-bold">Created at:&nbsp;</label><span class="text-2xl font-extralight"><%= hit.created_at %></span>
+        </div>
+        <div>
+            <label class="text-2xl font-bold">Last update at:&nbsp;</label><span class="text-2xl font-extralight"><%= hit.updated_at %></span>
+        </div>
+        <% if (hit.id_status == 1 && user.id_type == 3) { %>
+        <div class="mt-10">
+            <form class="inline" action="/hits/<%= hit.id %>/status" method="POST">
+                <input type="hidden" name="status" value="2">
+                <button type="submit" class="btn btn-error">Failed</button>
+            </form>
+            <form class="inline" action="/hits/<%= hit.id %>/status" method="POST">
+                <input type="hidden" name="status" value="3">
+                <button type="submit" class="btn btn-success mt-3">Completed</button>
+            </form>
+        </div>
+        <% } %>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const select = document.querySelector('#sl-id-assignee');
+            select.addEventListener('change', function() {
+                const id_assignee = select.value;
+                const id_hit = <%= hit.id %>;
+                const url = `/hits/${id_hit}/assignee`;
+                const data = {
+                    id_assignee: id_assignee
+                };
+                const options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                };
+                fetch(url, options)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                    })
+                    .catch(error => console.log(error));
+            });
+        });
+    </script>
+</body>
+</html>

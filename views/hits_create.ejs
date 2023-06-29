@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hit Create | Spy Agency</title>
+    <link href="/assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+    <%- include('./layout/topbar') -%>
+    <div class="container mt-10 mx-auto px-10">
+        <h1 class="text-3xl font-bold mb-10">Create Hit</h1>
+        <form action="/hits/create" method="post">
+            <div class="form-control w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Assignee</span>
+                </label>
+                <select name="id_assignee" class="select select-bordered">
+                    <% for(let i = 0; i < assignees.length; i++) { %>
+                        <option value="<%= assignees[i].id %>"><%= assignees[i].name %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="form-control w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Description</span>
+                </label>
+                <textarea name="description" class="textarea textarea-bordered"></textarea>
+            </div>
+            
+            <div class="form-control w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text">Target</span>
+                </label>
+                <input type="text" name="target_name" class="input input-bordered w-full max-w-xs" />
+            </div>
+
+            <button type="submit" class="btn btn-success mt-3">Create</button>
+        </form>
+    </div>
+</body>
+</html>

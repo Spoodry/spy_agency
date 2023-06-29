@@ -1,0 +1,2 @@
+# Spy Agency
+This is a tool for an international spy agency, it is developed in Node.js and the example passwords is a MD5 with no seed and is 1234. The database backup is in the config folder. Thanks for reviewing my code :)

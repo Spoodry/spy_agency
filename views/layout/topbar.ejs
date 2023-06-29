@@ -1,0 +1,22 @@
+<div class="navbar bg-base-100">
+    <div class="flex-1">
+        <a href="/hits" class="btn btn-ghost normal-case text-xl">Spy Agency</a>
+    </div>
+    <div class="flex-none">
+        <ul class="menu menu-horizontal px-1">
+            <% if((user.id_type == 1 && user.id == 1) || user.id_type == 2) { %>
+            <li><a href="/hitmen">Hitmen</a></li>
+            <% } %>
+            <li>
+                <details>
+                    <summary>
+                        <%= user.name %>
+                    </summary>
+                    <ul class="p-2 bg-base-100">
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </div>
+</div>

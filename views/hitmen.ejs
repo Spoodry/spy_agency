@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hits | Spy Agency</title>
+    <title>Hitmen | Spy Agency</title>
     <link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body>
@@ -11,38 +11,33 @@
 
     <div class="container mt-10 mx-auto px-10">
         <div class="text-center">
-            <h1 class="text-3xl font-bold mb-10">List of Hits</h1>
+            <h1 class="text-3xl font-bold mb-10">List of Hitmen</h1>
         </div>
-        <% if((user.id_type == 1 && user.id == 1) || user.id_type == 2) { %>
-        <div class="text-end">
-            <a href="/hits/create" class="btn btn-sm btn-success">New</a>
-        </div>
-        <% } %>
         <div class="overflow-x-auto">
             <table class="table">
                 <!-- head -->
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Assignee</th>
-                        <th>Target</th>
+                        <th>Name</th>
+                        <th>Email</th>
                         <th>Status</th>
                         <th class="w-6"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (let i = 0; i < hits.length; i++) { %>
+                    <% for (let i = 0; i < hitmen.length; i++) { %>
                         <tr>
-                            <td><%= hits[i].id %></td>
-                            <td><%= hits[i].assignee %></td>
-                            <td><%= hits[i].target_name %></td>
+                            <td><%= hitmen[i].id %></td>
+                            <td><%= hitmen[i].name %></td>
+                            <td><%= hitmen[i].email %></td>
                             <td>
-                                <div class="badge <%= (hits[i].id_status == 1 ? 'badge-info' : (hits[i].id_status == 2 ? 'badge-error' : 'badge-success')) %> gap-2">
-                                    <span><%= hits[i].status %></span>
+                                <div class="badge <%= (hitmen[i].active == 1 ? 'badge-success' : 'badge-error') %> gap-2">
+                                    <span><%= hitmen[i].active == 1 ? 'active' : 'inactive' %></span>
                                 </div>
                             </td>
                             <td>
-                                <a href="/hits/<%= hits[i].id %>" class="btn btn-sm btn-primary">View</a>
+                                <a href="/hitmen/<%= hitmen[i].id %>" class="btn btn-sm btn-primary">View</a>
                             </td>
                         </tr>
                     <% } %>
