@@ -23,7 +23,7 @@ module.exports = {
             });
         } catch (e) {
             console.log("[ERROR]: " + e);
-            return res.status(403).send({ error: 'Se ha encontrado un error.' });
+            return res.status(403).send({ error: 'An error has occurred.' });
         }
     },
     async show(req, res, next) {
@@ -58,7 +58,7 @@ module.exports = {
             });
         } catch (e) {
             console.log("[ERROR]: " + e);
-            return res.status(403).send({ error: 'Se ha encontrado un error.' });
+            return res.status(403).send({ error: 'An error has occurred.' });
         }
     },
     async deactivate(req, res, next) {
@@ -68,7 +68,7 @@ module.exports = {
             return res.redirect('/hitmen/' + req.params.id);
         } catch(e) {
             console.log("[ERROR]: " + e);
-            return res.status(403).send({ error: 'Se ha encontrado un error.' });
+            return res.status(403).send({ error: 'An error has occurred.' });
         }
     }
 };

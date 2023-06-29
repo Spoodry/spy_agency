@@ -6,7 +6,7 @@ module.exports = {
             return res.render('register', { success: true, message: '' });
         } catch (e) {
             console.log("[ERROR]: " + e);
-            return res.status(403).send({ error: 'Se ha encontrado un error.' });
+            return res.status(403).send({ error: 'An error has occurred.' });
         }
     },
     async create(req, res, next) {
@@ -35,7 +35,7 @@ module.exports = {
             return res.render('register', { success : true, message : 'user create' });
         } catch (e) {
             console.log("[ERROR]: " + e);
-            return res.render('register', { success : false, message : 'duplicate email' });
+            return res.status(403).send({ error: 'An error has occurred.' });
         }
     }
 };

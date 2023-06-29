@@ -14,7 +14,7 @@ module.exports = (app) => {
             });
         } catch (e) {
             console.log("[ERROR]: " + e);
-            return res.status(403).send({ error: 'Se ha encontrado un error.' });
+            return res.status(403).send({ error: 'An error has occurred.' });
         }
     });
     

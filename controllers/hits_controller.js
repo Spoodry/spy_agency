@@ -25,7 +25,7 @@ module.exports = {
             });
         } catch (e) {
             console.log("[ERROR]: " + e);
-            return res.status(403).send({ error: 'Se ha encontrado un error.' });
+            return res.status(403).send({ error: 'An error has occurred.' });
         }
     },
     async show(req, res, next) {
@@ -58,7 +58,7 @@ module.exports = {
             });
         } catch (e) {
             console.log("[ERROR]: " + e);
-            return res.status(403).send({ error: 'Se ha encontrado un error.' });
+            return res.status(403).send({ error: 'An error has occurred.' });
         }
     },
     async status_update(req, res, next) {
@@ -71,7 +71,7 @@ module.exports = {
             }
         } catch(e) {
             console.log("[ERROR]: " + e);
-            return res.status(403).send({ error: 'Se ha encontrado un error.' });
+            return res.status(403).send({ error: 'An error has occurred.' });
         }
     },
     async assignee_update(req, res, next) {
@@ -87,7 +87,7 @@ module.exports = {
             }
         } catch(e) {
             console.log("[ERROR]: " + e);
-            return res.status(403).send({ error: 'Se ha encontrado un error.' });
+            return res.status(403).send({ error: 'An error has occurred.' });
         }
     },
     async create(req, res, next) {
@@ -113,7 +113,7 @@ module.exports = {
             });
         } catch (e) {
             console.log("[ERROR]: " + e);
-            return res.status(403).send({ error: 'Se ha encontrado un error.' });
+            return res.status(403).send({ error: 'An error has occurred.' });
         }
     },
     async new(req, res, next) {
@@ -132,7 +132,7 @@ module.exports = {
             res.redirect('/hits');
         } catch (e) {
             console.log("[ERROR]: " + e);
-            return res.status(403).send({ error: 'Se ha encontrado un error.' });
+            return res.status(403).send({ error: 'An error has occurred.' });
         }
     },
 };
